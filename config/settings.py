@@ -11,6 +11,12 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import os
+from dotenv import load_dotenv
+
+# Загрузка переменных окружения из файла .env
+load_dotenv()
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -37,6 +43,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'drf_yasg',
+
+    'api',
+
+
 ]
 
 MIDDLEWARE = [
@@ -121,3 +133,12 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+GOOGLE_DRIVE_API_CREDENTIALS = {
+    "client_id": os.getenv('GOOGLE_DRIVE_CLIENT_ID', ''),
+    "client_secret": os.getenv('GOOGLE_DRIVE_CLIENT_SECRET', ''),
+    "redirect_uri": os.getenv('GOOGLE_DRIVE_REDIRECT_URI', ''),
+    "token_uri": os.getenv('GOOGLE_DRIVE_TOKEN_URI', 'https://accounts.google.com/o/oauth2/token'),
+}
+
